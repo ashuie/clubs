@@ -42,10 +42,10 @@ def root():
     cursor.execute("SELECT * FROM clubs")
   return fk.render_template("home.html")
 
-@app.route('/addclub', methods=["GET"])
+@app.route('/addclub', methods=["GET", "POST"])
 def add_club():
   method = fk.request.method
-  if method=="GET":
+  if method=="POST":
     values['club_name'] = escape_html(fk.request.form['name'])
     values['sponsor'] = escape_html(fk.request.form['sponsor'])
     
