@@ -7,10 +7,87 @@
   </head>
   <body>
     <h1 class="main-title">Add Your LASA Club</h1>
+    <p>Clubs submitted must be approved by admin before appearing on the clubs list.</p>
     <div id="content">
-      Form here
+      <h2>Upload your club information</h2>
+      <form method="post">
+        <label>
+          <div>Club Name</div>
+          <input type="text" name="name" value="{{ph_name}}">
+        </label>
+        <label>
+        <div>Club Sponsor</div>
+          <input type="text" name="name" value="{{ph_sponsor}}">
+        </label>
+        <label>
+          <div>Meeting Days</div>
+          <input type="checkbox" name="monday" value="monday"> 
+          <label for="monday">Monday</label>
+          <input type="checkbox" name="tuesday" value="tuesday"> 
+          <label for="tuesday">Tuesday</label>
+          <input type="checkbox" name="wednesday" value="wednesday"> 
+          <label for="wednesday">Wednesday</label>
+          <input type="checkbox" name="thursday" value="thursday"> 
+          <label for="thursday">Thursday</label>
+        <label>
+          <div>Meeting Time</div>
+          <select name="time">
+            <option value="beforeschool">Before School</option>
+            <option value="lunch">Lunch</option>
+            <option value="afterschool">After School</option>
+            <option value="other">Other</option>
+          </select>
+        </label>
+        <label>
+          Meeting Location
+        </label>
+            <input type="text" name="name" value="{{ph_location}}">
+        <label>
+          Club Topic Tags
+        </label>
+          <br>
+          <input type="checkbox" name="academic" value="academic"> 
+          <label for="academic">Academic</label>
+          
+          <input type="checkbox" name="artshumanities" value="artshumanities"> 
+            <label for="artshumanities">Arts & Humanities</label>
+          
+          <input type="checkbox" name="competitionbased" value="competitionbased"> 
+            <label for="competitionbased">Competition-based</label>
+          
+          <input type="checkbox" name="communityservice" value="communityservice"> 
+          <label for="communityservice">Community Service</label>
+       
+        <input type="checkbox" name="cultural" value="cultural"> 
+          <label for="cultural">Cultural</label>
+
+        <input type="checkbox" name="gaming" value="gaming"> 
+          <label for="gaming">Gaming</label>
+
+        <input type="checkbox" name="leadership" value="leadership"> 
+          <label for="leadership">Leadership</label>
+
+        <input type="checkbox" name="sciencetechnology" value="sciencetechnology"> 
+          <label for="sciencetechnology">Science & Technology</label>
+          
+        <input type="checkbox" name="sports" value="sports"> 
+          <label for="sports">Sports</label>
+       
+        <label>
+          Contact Information 
+        </label>
+          <input type="text" name="content">{{ph_contact}}</input>
+        <br>
+        <label>
+          Club Description (max 150 characters)
+        </label>
+        <br>
+          <textarea name="description"></textarea>
+          
+        <div class="error">{{ph_error}}</div>
+        <input type="submit">
+      </form>
     </div>
-    <input type="submit"></input>
     <a href="/">Cancel</a>
   </body>
 </html>
