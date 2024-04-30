@@ -1,0 +1,18 @@
+{% extends 'clubtemplate.html' %}
+
+{% block bodycontent %}
+    <div class="club-post">
+        <div class="club-heading">
+          <div class="club-name">Welcome to {{post.clubname}}!</div>
+          <div class="club-sponsor"> Sponsored by {{post.sponsor}}</div>
+        </div>
+    <div class="club-description"> About our club: {{post.clubdescription}}</div>
+    <div class="club-tags">Topic Tags:
+      {% for tag in tags %}
+      <div class="tag">{{post.tagname}}
+      {% endfor %}
+    <div class="club-meetinginfo">Meeting info:
+      <br>Meeting days: {{post.meetingdays}}<br>Meeting time: {{post.meetingtimes}}<br>
+    Meeting location: {{post.meetinglocation}}</div>
+      </div>
+{% endblock %}
