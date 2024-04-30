@@ -10,12 +10,23 @@ app = fk.Flask(
     template_folder="templates",
 )
 
+def get_connection():
+  connection = sqlite3.connect("blogbosts.db")
+  return connection
+
+def get_clubs():
+  connection = get_connection()
+  cursor = connection.cursor()
+  cursor.execute("SELECT * FROM clubs")
+  clubs = cursor.fetchall()
+  return clubs 
+
 @app.route('/', methods=["GET"])
 @app.route('/clubs', methods=["GET"],strict_slashes=False)
 def root():
   with sqlite3.connect("clubs.db") as con:
     cursor = con.cursor()
-    cursor.execute("CREATE TABLE IF NOT EXISTS clubs (name TEXT, description TEXT, date TEXT, url TEXT)")
+    cursor.execute("CREATE TABLE IF NOT EXISTS clubs (name TEXT, description TEXT, date TEXT, categories TEXT)")
     cursor.execute("SELECT * FROM clubs")
   return fk.render_template("home.html")
 
