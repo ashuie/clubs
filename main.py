@@ -4,6 +4,9 @@ import re
 import logging
 import sqlite3
 
+
+values = {"club_name":"", "description":"", "date":"", "categories":"", "e":""}
+
 app = fk.Flask(
     __name__,
     static_folder="stylesheets",
@@ -20,6 +23,12 @@ def get_clubs():
   cursor.execute("SELECT * FROM clubs")
   clubs = cursor.fetchall()
   return clubs 
+
+def create_new_club():
+  with get_connection() as connection:
+    cursor = connection.cursor()
+    cursor.execute("INSERT INTO posts (club_name, description, date, categories) VALUES (?, ?, ?, ?)", (values["club_name"], values["description"], values["date"], values["categories"] ))#stuff should go inside that 
+    connection.commit()
 
 @app.route('/', methods=["GET"])
 @app.route('/clubs', methods=["GET"],strict_slashes=False)
