@@ -15,7 +15,8 @@ app = fk.Flask(
 def root():
   with sqlite3.connect("clubs.db") as con:
     cursor = con.cursor()
-    cursor.execute("CREATE TABLE IF NOT EXISTS clubs (name TEXT, description TEXT, logo TEXT, url TEXT)")
+    cursor.execute("CREATE TABLE IF NOT EXISTS clubs (name TEXT, description TEXT, date TEXT, url TEXT)")
+    cursor.execute("SELECT * FROM clubs")
   return fk.render_template("home.html")
 
 @app.route('/addclub', methods=["GET"])
