@@ -2,6 +2,7 @@ import flask as fk
 from flask import render_template
 import re
 import logging
+import html
 import sqlite3
 
 
