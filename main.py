@@ -2,8 +2,10 @@ import flask as fk
 from flask import render_template
 import re
 import logging
+import html
 import sqlite3
 
+#comment test
 
 values = {"club_name":"", "sponsor":"", "days":"", "time":"", "location":"", "category":"", "e":""}
 
