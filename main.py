@@ -5,6 +5,7 @@ import logging
 import html
 import sqlite3
 
+#comment test
 
 values = {"club_name":"", "sponsor":"", "days":"", "time":"", "location":"", "category":"", "e":""}
 
