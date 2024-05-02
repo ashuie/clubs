@@ -8,7 +8,7 @@ import sqlite3
 #comment test
 
 values = {"club_name":"", "sponsor":"", "days":"", "time":"", "location":"", "category":"", "e":""}
-
+#CONTRIBUTOR
 app = fk.Flask(
     __name__,
     static_folder="stylesheets",
@@ -29,7 +29,7 @@ def get_clubs():
   clubs = cursor.fetchall()
   return clubs 
 
-def create_new_club():
+def create_new_club(): 
   with get_connection() as connection:
     cursor = connection.cursor()
     cursor.execute("INSERT INTO posts (club_name, sponsor, days, time, location, category) VALUES (?, ?, ?, ?, ?, ?)", (values["club_name"], values["sponsor"], values["days"], values["time"], values["location"], values["category"] ))
