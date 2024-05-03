@@ -10,6 +10,8 @@ from wtforms import widgets
 from wtforms.validators import InputRequired, Length, StopValidation
 
 logging.basicConfig(level=logging.DEBUG)
+global db_file
+db_file = "/clubs/clubs.db"
 
 def get_tags():
   return [(1, 'Academic'), (2, 'Arts & Humanities'), (3, 'Competition-based'), (4, 'Community Service'), (5, 'Cultural'), (6, 'Gaming'), (7, 'Leadership'), (8, 'Science & Technology'), (9, 'Sports')]
@@ -59,7 +61,7 @@ def escape_html(s):
   return html.escape(s)
 
 def get_connection():
-  connection = sqlite3.connect("blogbosts.db")
+  connection = sqlite3.connect("clubs/clubs.db")
   return connection
 
 def get_clubs():
@@ -69,20 +71,24 @@ def get_clubs():
   clubs = cursor.fetchall()
   return clubs 
 
-def create_new_club():
+def create_new_club(form):
   with get_connection() as connection:
     cursor = connection.cursor()
-    cursor.execute("INSERT INTO posts (club_name, sponsor, days, time, location, category) VALUES (?, ?, ?, ?, ?, ?)", (values["club_name"], values["sponsor"], values["days"], values["time"], values["location"], values["category"] ))
+    # ADD TO SQL WITH WTFORM
+    cursor.execute("INSERT INTO clubs (name, sponsor, days, time, location, category, contact, description) VALUES (?, ?, ?, ?, ?, ?, ?, ?)", (str(form.name), str(form.sponsor), str(form.days), str(form.time), str(form.location), str(form.tags), str(form.contact), str(form.description)))
     connection.commit()
+
+def load_clubs(clubs):
+  return fk.render_template("home.html", clubs=clubs)
 
 @app.route('/', methods=["GET"])
 @app.route('/clubs', methods=["GET"],strict_slashes=False)
 def root():
-  with sqlite3.connect("clubs.db") as con:
+  with sqlite3.connect("clubs/clubs.db") as con:
     cursor = con.cursor()
-    cursor.execute("CREATE TABLE IF NOT EXISTS clubs (name TEXT, sponsor TEXT, days TEXT, meetingTime TEXT, location TEXT, categories TEXT)")
-    cursor.execute("SELECT * FROM clubs")
-  return fk.render_template("home.html")
+    cursor.execute("CREATE TABLE IF NOT EXISTS clubs (name TEXT, sponsor TEXT, days TEXT, time TEXT, location TEXT, category TEXT, contact TEXT, description TEXT)")
+    clubs = cursor.execute("SELECT * FROM clubs")
+  return load_clubs(get_clubs())
 
 @app.route('/addclub', methods=["GET", "POST"])
 def add_club():
@@ -92,6 +98,7 @@ def add_club():
     if form.validate():
       logging.info("GOOD")
       # ADD CLUB TO SQL
+      create_new_club(form)
       return(redirect('/submit', code=308))
     else:
       logging.info("BAD")

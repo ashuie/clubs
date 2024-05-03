@@ -58,7 +58,24 @@
             </div>
           </div>
           <div class="container-5">
-            <img class="container-6" src="../stylesheets/assets/vectors/container_x2.svg" />
+            {% for club in clubs %}
+              <div class="club">
+                <div class="club-heading">
+                  <div class="club-name">{{club.name}}</div>
+            <!-- see strftime.org, %X and %z are blank because its naive -->
+                </div>
+                <div class="club-sponsor">Sponsored by {{club.sponsor}}</div>
+                <div class="club-days">Meets on: {{club.days}}</div>
+                <div class="club-time">Meeting time: {{club.time}} </div>
+                <div class="club-location">Meeting location: {{club.location}}</div>
+                <div class="club-tags">Club tags:</div>
+                {% for tag in club.tags %}
+                  <div class="tag">{{tag}}</div>
+                {% endfor %}
+                <div class="club-description">About the club: <br> {{club.description}}</div>
+                <div class="club-contact">Contact information: {{club.contact}}</div>
+              </div>
+            {% endfor %}
           </div>
         </div>
       </div>
