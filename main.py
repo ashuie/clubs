@@ -11,7 +11,7 @@ from wtforms.validators import InputRequired, Length, StopValidation
 
 logging.basicConfig(level=logging.DEBUG)
 global db_file
-db_file = "/clubs/clubs.db"
+db_file = "clubs.db"
 
 def get_tags():
   return [(1, 'Academic'), (2, 'Arts & Humanities'), (3, 'Competition-based'), (4, 'Community Service'), (5, 'Cultural'), (6, 'Gaming'), (7, 'Leadership'), (8, 'Science & Technology'), (9, 'Sports')]
@@ -61,7 +61,7 @@ def escape_html(s):
   return html.escape(s)
 
 def get_connection():
-  connection = sqlite3.connect("clubs/clubs.db")
+  connection = sqlite3.connect("clubs.db")
   return connection
 
 def get_clubs():
@@ -84,7 +84,7 @@ def load_clubs(clubs):
 @app.route('/', methods=["GET"])
 @app.route('/clubs', methods=["GET"],strict_slashes=False)
 def root():
-  with sqlite3.connect("clubs/clubs.db") as con:
+  with sqlite3.connect("clubs.db") as con:
     cursor = con.cursor()
     cursor.execute("CREATE TABLE IF NOT EXISTS clubs (name TEXT, sponsor TEXT, days TEXT, time TEXT, location TEXT, category TEXT, contact TEXT, description TEXT)")
     clubs = cursor.execute("SELECT * FROM clubs")
