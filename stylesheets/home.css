@@ -1,0 +1,128 @@
+body {
+  width: 100%;
+  margin: 0;
+  font-family: 'Oswald';
+}
+
+div.top-bar {
+  width: 100%;
+  height: 125px;
+  background-color: #0C2340; 
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+}
+
+a.top-bar-links {
+  font-family: 'Oswald';
+  font-size: 30px;
+  color: #ffffff;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.add-club {
+  float: left;
+  margin-right: 30px;
+}
+
+.contact {
+  float: left;
+  margin-right: 10px;
+}
+
+.spacer {
+  width: 35%;
+}
+
+.top-bar-logo {
+  height: 20px;
+  margin-right: 5px;
+}
+
+div.lasa-logo {
+  float: left;
+  margin-left: 20px;
+}
+
+img.logo {
+  height: 100px;
+}
+
+div.site-title {
+  float: left;
+  margin-left: 20px;
+  font-size: 40px;
+  color: #ffffff;
+}
+
+div.site-contents {
+  width: 100%;
+  height: auto;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+div.side-bar {
+  float: left;
+  width: 25%;
+  height: auto;
+}
+
+div.search {
+  align-items: center;
+  margin-left: 30px;
+  margin-top: 20px;
+}
+
+.search-bar {
+  font-family: 'Oswald';
+  font-size: 18px;
+  padding: 1px;
+  width: 70%;
+  margin-right: 5px;
+}
+
+.search-logo {
+  height: 20px;
+}
+
+div.filter {
+  font-family: 'Oswald';
+  font-size: 24px;
+  color: #0C2340;
+  margin-top: 20px;
+  margin-left: 30px;
+}
+
+div.club-database {
+  float: left;
+  width: 75%;
+  height: auto;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+div.club {
+  padding: 20px;
+  height: auto;
+  width: auto;
+  background-color: #C8C9C7;
+}
+
+.club-name {
+  color: #0C2340; 
+  margin-bottom: 5px;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.no-search-results {
+  grid-column: span 2;
+  flex-grow: 1;
+  text-align: center;
+  font-size: 30px;
+  padding-top: 20px;
+}

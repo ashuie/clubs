@@ -11,71 +11,62 @@
       <link rel="preconnect" href="https://fonts.googleapis.com">
       <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
       <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400&display=swap" rel="stylesheet">
-      <link rel="stylesheet" href="/stylesheets/desktop1.css" />
+      <link rel="stylesheet" href="/stylesheets/home.css" />
     </head>
     <body>
-      <div class="desktop-1">
-        <div class="container-4">
-          <div class="container-7">
-            <div class="screenshot-20240425-at-10381">
-              <img class="vector-2" src="../stylesheets/assets/images/screenshot20240425At10381.png" />
-            </div>
-            <p class="lasa-club-database">
-            <span class="lasa-club-database-sub-10"></span><span></span>
-            </p>
-          </div>
-          <div class="container-2">
-            <div class="calendar-empty">
-              <img class="vector-2" src="../stylesheets/assets/vectors/vector_x2.svg" />
-            </div>
-            <span class="add-your-own">
-            <a href="/addclub">Add Your Own</a>
-            </span>
-            <div class="envelope-1">
-              <img class="vector-1" src="../stylesheets/assets/vectors/vector1_x2.svg" />
-            </div>
-            <span class="contact">
-            Contact
-            </span>
-          </div>
+      <div class="top-bar">
+        <div class="lasa-logo">
+          <a href="/"><img class="logo" src="../stylesheets/assets/images/screenshot20240425At10381.png"/></a>
         </div>
-        <div class="container-3">
-          <div class="group-2">
-            <div class="search">
-            Search
-            </div>
-            <div class="container">
-              <div class="arrow-angle-down-circle">
-                <img class="vector-3" src="../stylesheets/assets/vectors/vector6_x2.svg" />
-              </div>
-              <span class="filters">
-              Filters
-              </span>
-            </div>
-            <img class="group-1" src=".../stylesheets/assets/vectors/group1_x2.svg" />
-            <div class="search-2">
-              <img class="vector" src="../stylesheets/assets/vectors/vector7_x2.svg" />
-            </div>
-          </div>
-          <div class="container-5">
-            {% for club in clubs %}
-              <div class="club">
-                <div class="club-heading">
-                  <div class="club-name">{{club.name}}</div>
-                </div>
-                <div class="club-content">
-                  <div class="club-sponsor">Sponsored by {{club.sponsor}}</div>
-                  <div class="club-days">Meets on: {{club.days}}</div>
-                  <div class="club-time">Meeting time: {{club.time}} </div>
-                  <div class="club-location">Meeting location: {{club.location}}</div>
-                  <div class="club-tags">Club tags: <br>{{club.category}}</div>
-                  <div class="club-description">About the club: <br> {{club.description}}</div>
-                  <div class="club-contact">Contact information: {{club.contact}}</div>
-                </div>
-              </div>
-            {% endfor %}
-          </div>
+        <div class="site-title">
+          LASA Club Database
+        </div>
+        <div class="spacer"></div>
+        <div class="add-club">
+          <a class="top-bar-links" href="/addclub">
+            <img class="top-bar-logo" src="../stylesheets/assets/vectors/vector_x2.svg" />
+            Add your own
+          </a>
+        </div>
+        <div class="contact">
+          <a class="top-bar-links" href="mailto:jo.koerth@austinisd.org">
+          <img class="top-bar-logo" src="../stylesheets/assets/vectors/vector1_x2.svg" />
+          Contact</a>
+        </div>
+    </div>
+    <div class="site-contents">
+      <div class="side-bar">
+        <div class="search">
+          <form method="POST" action="/search">
+            <input class="search-bar" type="text" name="search-query" placeholder="Search">
+            <input class="search-logo" type="image" src="../stylesheets/assets/vectors/vector7_x2.svg" border="0" name="submit" />
+          </form>
+        </div>
+        <div class="filter">
+          Filters
         </div>
       </div>
+      <div class="club-database">
+        {% for club in clubs %}
+          <div class="club">
+            <div class="club-heading">
+              <div class="club-name"><a class="club-name" href="/{{club.url}}">{{club.name}}</a></div>
+            </div>
+            <div class="club-content">
+              <div class="club-sponsor">Sponsored by {{club.sponsor}}</div>
+              <div class="club-days"><b>Meets on: {{club.days}}</b></div>
+              <div class="club-time"><b>Meeting time: {{club.time}} </b></div>
+              <div class="club-location"><b>Meeting location: {{club.location}}</b></div>
+              <div class="club-tags">Club tags: <br>{{club.category}}</div>
+              <div class="club-contact">Contact information: {{club.contact}}</div>
+            </div>
+          </div>
+        </a>
+        {% endfor %}
+        {% if emptysearch %}
+        <div class="no-search-results">No Results Found</div>
+        {% endif %}
+      </div>
+    </div>
     </body>
   </html>

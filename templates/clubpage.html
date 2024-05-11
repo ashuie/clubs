@@ -1,18 +1,22 @@
 {% extends 'clubtemplate.html' %}
 
 {% block bodycontent %}
+  {% if club %}
     <div class="club-post">
+      <a class="back-link" href="/">Back</a>
         <div class="club-heading">
-          <div class="club-name">Welcome to {{post.clubname}}!</div>
-          <div class="club-sponsor"> Sponsored by {{post.sponsor}}</div>
+          <div class="club-name"><span class="template-text">Welcome to </span>{{club.name}}!</div>
+          <div class="club-info club-sponsor"> <span class="template-text">Sponsored by </span>{{club.sponsor}}</div>
         </div>
-    <div class="club-description"> About our club: {{post.clubdescription}}</div>
-    <div class="club-tags">Topic Tags:
-      {% for tag in tags %}
-      <div class="tag">{{post.tagname}}
-      {% endfor %}
-    <div class="club-meetinginfo">Meeting info:
-      <br>Meeting days: {{post.meetingdays}}<br>Meeting time: {{post.meetingtimes}}<br>
-    Meeting location: {{post.meetinglocation}}</div>
+    <div class="club-info club-description"> {{club.description}}</div>
+    <div class="club-info club-tags"><span class="template-text">Topic Tags: </span>
+      <br>{{club.category}}
+    <div class="club-info club-meetinginfo"><span class="template-text">Meeting info: </span>
+      <br>Meeting days: {{club.days}}<br><span class="template-text">Meeting time: </span>{{club.time}}<br>
+    <span class="template-text">Meeting location: </span>{{club.location}}</div>
       </div>
+  {% else %}
+      <div class="error-club">Error: Club not Found</div>
+      <div class="success-info"><a href="/">Back</a>
+  {% endif %}
 {% endblock %}

@@ -54,65 +54,59 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/stylesheets/desktop_11.css" />
+    <link rel="stylesheet" href="/stylesheets/clubform.css" />
   </head>
   <body>
-    <div class="desktop-1">
-      <div class="container">
-        <div class="container-1">
-          <div class="container-3">
-            <div class=".,/stylesheets/assets/images/screenshot20240425At10381.png">
-              
-            </div>
-            <p class="lasa-club-database">
-            <span class="lasa-club-database-sub-10"></span><span></span>
-            </p>
-          </div>
-          <div class="container-2">
-            <div class="calendar-empty">
-              <img class="vector-1" src="../stylesheets/assets/vectors/vector_x2.svg" />
-            </div>
-            <div class="envelope-1">
-              <img class="vector" src="../stylesheets/assets/vectors/vector1_x2.svg" />
-            </div>
-            <span class="contact">
-            Contact
-            </span>
-          </div>
-        </div>
-        <div class="rectangle-2">
-        </div>
+    <div class="top-bar">
+      
+      <div class="lasa-logo">
+        <a href="/"><img class="logo" src="../stylesheets/assets/images/screenshot20240425At10381.png"/></a>
       </div>
-      <div class="clubs-submitted-will-be-reviewed-by-admin-before-appearing-on-the-club-page">
-      Clubs submitted will be reviewed by admin before appearing on the club page.
+      <div class="site-title">
+        LASA Club Database
+      </div>
+      <div class="spacer"></div>
+      <div class="home">
+        <a class="top-bar-links" href="/">Home</a>
+      </div>
+      <div class="contact">
+        <a class="top-bar-links" href="mailto:jo.koerth@austinisd.org">
+        <img class="envelope-logo" src="../stylesheets/assets/vectors/vector1_x2.svg" />
+        Contact</a>
+      </div>
+      
+    </div>
+      <div class="form-info">Clubs submitted will be reviewed by admin before appearing on the club page.
       </div>
     <form method="POST" novalidate>
       {{ form.csrf_token }}
 
       {% macro render_field(field) %}
-        <p class="form-label">{{ field.label }}
-        <p class="form-field">{{ field(**kwargs)|safe }}
+        <div class="form-container">
+          <p class="form-label">{{ field.label }}</p>
+          <p class="form-field">{{ field(**kwargs)|safe }}</p>
         {% if field.errors %}
           {% for error in field.errors %}
             <span class="error">{{ error }}</span>
           {% endfor %}
         {% endif %}
+        </div>
       {% endmacro %}
 
       <div class="form-content">
-        <div class="club-field">{{ render_field(form.name) }}</div>
-        <div class="club-field">{{ render_field(form.sponsor) }}</div>
-        <div class="club-field">{{ render_field(form.days) }}</div>
-        <div class="club-field">{{ render_field(form.time) }}</div>
-        <div class="club-field">{{ render_field(form.location) }}</div>
-        <br>
-        <div class="club-field">{{ render_field(form.tags) }}</div>
-        <div class="club-field">{{ render_field(form.contact) }}</div>
-        <div class="club-field">{{ render_field(form.description) }}</div>
-      </div>
+        <div class="club-field">
+          {{ render_field(form.name) }}
+          {{ render_field(form.sponsor) }}
+          {{ render_field(form.days) }}
+          {{ render_field(form.time) }}
+          {{ render_field(form.location) }}
+          <div class="tag-container">{{ render_field(form.tags) }}</div>
+          {{ render_field(form.contact) }}
+          {{ render_field(form.description) }}
+        </div>
       <input type="submit" value="Submit">
     </form>
-    <a href="/">Cancel</a>
+    <a class="cancel" href="/">Cancel</a>
 
   </body>
 </html>

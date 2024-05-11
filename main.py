@@ -91,7 +91,7 @@ def string_convert(dict, list):
 def create_new_club(form):
   with get_connection() as connection:
     cursor = connection.cursor()
-    cursor.execute("INSERT INTO clubs (name, sponsor, days, time, location, category, contact, description) VALUES (?, ?, ?, ?, ?, ?, ?, ?)", (str(form.name.data), str(form.sponsor.data), string_convert(weekdays, form.days.data), str(form.time.data), str(form.location.data), string_convert(tags_list, form.tags.data), str(form.contact.data), str(form.description.data)))
+    cursor.execute("INSERT INTO clubs (url, name, sponsor, days, time, location, category, contact, description) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)", (str(form.name.data).replace(" ", ""), str(form.name.data), str(form.sponsor.data), string_convert(weekdays, form.days.data), str(form.time.data), str(form.location.data), string_convert(tags_list, form.tags.data), str(form.contact.data), str(form.description.data)))
     connection.commit()
 
 def load_clubs(clubs):
@@ -102,18 +102,18 @@ def get_clubs_by_tags(tags):
   with get_connection() as con:
     cursor = con.cursor()
     for tag in tags:
-      query = cursor.execute("SELECT * FROM clubs WHERE tags LIKE /'%" + tag + "%\'")
+      query = cursor.execute("SELECT * FROM clubs WHERE tags LIKE\'%" + tag + "%\'")
       clubs.append(query)
   return clubs
 
 # get_clubs_by_day
 
-@app.route('/', methods=["GET"])
+@app.route('/', methods=["GET", "POST"])
 @app.route('/clubs', methods=["GET"],strict_slashes=False)
 def root():
   with sqlite3.connect("clubs/clubs.db") as con:
     cursor = con.cursor()
-    cursor.execute("CREATE TABLE IF NOT EXISTS clubs (name TEXT, sponsor TEXT, days TEXT, time TEXT, location TEXT, category TEXT, contact TEXT, description TEXT)")
+    cursor.execute("CREATE TABLE IF NOT EXISTS clubs (url TEXT, name TEXT, sponsor TEXT, days TEXT, time TEXT, location TEXT, category TEXT, contact TEXT, description TEXT)")
     return load_clubs(get_clubs())
 
 @app.route('/addclub', methods=["GET", "POST"])
@@ -131,10 +131,35 @@ def add_club():
       return fk.render_template("addclub.html", form=form)
   else:
     return fk.render_template("addclub.html", form=form)
-
+    
+@app.route('/search', methods=["GET", "POST"])
+def search_by_query():
+  query = html.escape(fk.request.form["search-query"])
+  empty = False
+  if (len(query) > 0):
+    with get_connection() as con:
+      cursor = con.cursor()
+      clubs = cursor.execute("SELECT * FROM clubs WHERE name LIKE \'%" + query + "%\' OR description LIKE \'%" + query + "%\'")
+      all_clubs = clubs.fetchall()
+      if (len(all_clubs) == 0):
+        empty = True
+      logging.info(str(clubs) + " " + str(len(all_clubs)))
+      return fk.render_template("home.html", clubs=all_clubs, emptysearch=empty)
+  else:
+      return(redirect('/', code=308))
+    
 @app.route('/submit', methods=['POST'])
 def submit_success():
   return(fk.render_template("success.html"))
 
+@app.route('/<club_name>', methods=["GET"])
+def permapost(club_name):
+  with get_connection() as con:
+    cursor = con.cursor()
+    s = cursor.execute("SELECT * FROM clubs WHERE url=?", (club_name, ))
+    club = s.fetchone()
+    return fk.render_template("clubpage.html", club=club)
 
+
+  
 app.run(host='0.0.0.0', port='3000')

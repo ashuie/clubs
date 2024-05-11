@@ -3,10 +3,32 @@
   <head>
     <meta charset="utf-8">
     <title>LASA Clubs</title>
-    <link rel="stylesheet" type="text/css" href="/stylesheets/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/clubpage.css">
   </head>
   <body>
-    <h1>LASA Clubs</h1>
+    <div class="top-bar">
+        <div class="lasa-logo">
+          <a href="/"><img class="logo" src="../stylesheets/assets/images/screenshot20240425At10381.png"/></a>
+        </div>
+        <div class="site-title">
+          LASA Club Database
+        </div>
+        <div class="spacer"></div>
+        <div class="add-club">
+          <a class="top-bar-links" href="/addclub">
+            <img class="top-bar-logo" src="../stylesheets/assets/vectors/vector_x2.svg" />
+            Add your own
+          </a>
+        </div>
+        <div class="contact">
+          <a class="top-bar-links" href="mailto:jo.koerth@austinisd.org">
+          <img class="top-bar-logo" src="../stylesheets/assets/vectors/vector1_x2.svg" />
+          Contact</a>
+        </div>
+    </div>
     <div id="content">
       {% block bodycontent %}
         Replace

@@ -1,0 +1,150 @@
+body {
+  width: 100%;
+  margin: 0;
+  font-family: 'Oswald';
+}
+
+.club-field {
+  font-family: 'Oswald';
+  color: #000000;
+  font-size: 24px;
+  display: block;
+  margin-left: 20px
+}
+
+input[type=text] {
+  padding: 2px 20px 2px 0px;
+  font-family: 'Oswald';
+  font-weight: thin;
+  letter-spacing: 0.5px;
+  font-size: 18px;
+  width: 30%;
+}
+
+input[type=submit] {
+  background-color: #0C2340;
+  font-family: 'Oswald';
+  padding: 10px 20px 10px 20px;
+  font-size: 20px;
+  border: none;
+  color: white;
+  cursor: pointer;
+  margin: 20px;
+  width: 15%;
+}
+
+select {
+  padding: 5px;
+  font-family: 'Oswald';
+  font-size: 20px;
+  width: 20%;
+}
+
+textarea {
+  height: 200px;
+  width: 500px;
+  font-family: 'Oswald';
+  font-weight: thin;
+  font-size: 16px;
+}
+
+a.cancel {
+  font-family: 'Oswald';
+  font-size: 20px;
+  margin-left: 10px;
+}
+
+a.top-bar-links {
+  font-family: 'Oswald';
+  font-size: 30px;
+  color: #ffffff;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.home {
+  float: left;
+  margin-right: 30px;
+}
+
+.contact {
+  float: left;
+}
+
+.spacer {
+  width: 45%;
+}
+
+.envelope-logo {
+  height: 20px;
+  margin-right: 5px;
+}
+
+
+div.form-info {
+  font-family: 'Oswald';
+  font-size: 20px;
+  color: #0C2340;
+  margin-left: 20px;
+  margin-top: 20px;
+}
+
+div.top-bar {
+  width: 100%;
+  height: 125px;
+  background-color: #0C2340; 
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+}
+
+div.lasa-logo {
+  float: left;
+  margin-left: 20px;
+}
+
+img.logo {
+  height: 100px;
+}
+
+div.site-title {
+  float: left;
+  margin-left: 20px;
+  font-size: 40px;
+  color: #ffffff;
+}
+
+div.form-container {
+  display: inline;
+}
+
+ul {
+  list-style-type: none;
+}
+
+.tag-container ul {
+  list-style-type: none;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  margin-top: 5px;
+}
+
+.tag-container li {
+  margin-left: 5px;
+}
+
+p.form-label {
+  margin-bottom: 0;
+}
+
+p.form-field {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+span.error {
+  color: #e05555;
+  font-weight: 100;
+  font-size: 16px;
+}

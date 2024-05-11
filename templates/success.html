@@ -1,13 +1,9 @@
-<!DOCTYPE HTML>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>LASA Clubs</title>
-    <link rel="stylesheet" type="text/css" href="/stylesheets/style.css">
-  </head>
-  <body>
-    <h1 class="main-title">Thanks for adding your club!</h1>
-    <p>Your club information will be added upon admin approval.</p>
-    <a href="/">Home</a>
-  </body>
-</html>
+{% extends 'clubtemplate.html' %}
+
+{% block bodycontent %}
+    <div class="success-title">Thanks for submitting your club!</div>
+    <div class="success-info">Your club information will be added upon admin approval.
+    </div>
+    <div class="success-info"><a href="/">Back</a>
+    </div>
+{% endblock %}
