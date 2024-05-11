@@ -1,3 +1,8 @@
+html, body, .desktop-1 {
+  width: 100vw; 
+  height: 100vh;
+}
+
 .desktop-1 .screenshot-20240425-at-10381 {
   background: url('../assets/images/screenshot20240425At10381.png') 50% / cover no-repeat;
   margin-right: 15px;
@@ -84,7 +89,8 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  padding: 19px 49.4px 19px 112px;
+  padding: 19px 0px 0px 112px;
+  width: 100%;
   width: 1440px;
   box-sizing: border-box;
 }
@@ -155,7 +161,7 @@
   display: flex;
   flex-direction: column;
   padding-left: 12.5px;
-  width: 210px;
+  width: 10%;
   box-sizing: border-box;
 }
 .desktop-1 .container-6 {
@@ -172,7 +178,26 @@
   width: 1118px;
   height: 880px;
   box-sizing: border-box;
+  color: #000000;
+  font-family: 'Oswald';
 }
+
+.club-name {
+  color: #000000;
+  font-family: 'Oswald';
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.club-content {
+  font-weight: thin;
+}
+
+.club {
+  width: 400px;
+  text-wrap: wrap;
+}
+
 .desktop-1 .container-3 {
   margin-left: 53px;
   display: flex;

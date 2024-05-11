@@ -110,7 +110,7 @@
   font-size: 25px;
   color: #000000;
 }
-.desktop-1 .club-name {
+/*.desktop-1 .club-name {
   margin: 0 15px 17px 15px;
   display: inline-block;
   align-self: flex-start;
@@ -188,12 +188,18 @@
   font-weight: 400;
   font-size: 20px;
   color: #000000;
-}
+} */
 .desktop-1 {
   background: #FFFFFF;
   display: flex;
   flex-direction: column;
-  padding-bottom: 353px;
   width: 1440px;
   box-sizing: border-box;
+}
+
+.club-field {
+  font-family: 'Oswald';
+  color: #000000;
+  font-size: 24px;
+  display: block;
 }
