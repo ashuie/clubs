@@ -99,12 +99,14 @@ def load_clubs(clubs):
 
 def get_clubs_by_tags(tags):
   clubs = []
-  with get_connection() as connection:
-    cursor = connection.cursor()
+  with get_connection() as con:
+    cursor = con.cursor()
     for tag in tags:
       query = cursor.execute("SELECT * FROM clubs WHERE tags LIKE /'%" + tag + "%\'")
       clubs.append(query)
   return clubs
+
+# get_clubs_by_day
 
 @app.route('/', methods=["GET"])
 @app.route('/clubs', methods=["GET"],strict_slashes=False)
