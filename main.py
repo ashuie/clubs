@@ -91,14 +91,20 @@ def string_convert(dict, list):
 def create_new_club(form):
   with get_connection() as connection:
     cursor = connection.cursor()
-    # ADD TO SQL WITH WTFORM
-    logging.info(form.tags.data)
-    logging.info(string_convert(tags_list, form.tags.data))
     cursor.execute("INSERT INTO clubs (name, sponsor, days, time, location, category, contact, description) VALUES (?, ?, ?, ?, ?, ?, ?, ?)", (str(form.name.data), str(form.sponsor.data), string_convert(weekdays, form.days.data), str(form.time.data), str(form.location.data), string_convert(tags_list, form.tags.data), str(form.contact.data), str(form.description.data)))
     connection.commit()
 
 def load_clubs(clubs):
   return fk.render_template("home.html", clubs=clubs)
+
+def get_clubs_by_tags(tags):
+  clubs = []
+  with get_connection() as connection:
+    cursor = connection.cursor()
+    for tag in tags:
+      query = cursor.execute("SELECT * FROM clubs WHERE tags LIKE /'%" + tag + "%\'")
+      clubs.append(query)
+  return clubs
 
 @app.route('/', methods=["GET"])
 @app.route('/clubs', methods=["GET"],strict_slashes=False)
@@ -106,7 +112,6 @@ def root():
   with sqlite3.connect("clubs/clubs.db") as con:
     cursor = con.cursor()
     cursor.execute("CREATE TABLE IF NOT EXISTS clubs (name TEXT, sponsor TEXT, days TEXT, time TEXT, location TEXT, category TEXT, contact TEXT, description TEXT)")
-    clubs = cursor.execute("SELECT * FROM clubs")
     return load_clubs(get_clubs())
 
 @app.route('/addclub', methods=["GET", "POST"])
@@ -116,7 +121,6 @@ def add_club():
   if method == "POST":
     if form.validate():
       logging.info("GOOD")
-      # ADD CLUB TO SQL
       create_new_club(form)
       return(redirect('/submit', code=308))
     else:
