@@ -44,6 +44,23 @@
         </div>
         <div class="filter">
           Filters
+          <form method="POST" action="/filter">
+            <input class="filter-submit" type="submit" value="Apply" disabled>
+            {% macro render_field(field) %}
+              <div class="form-container">
+                <p class="form-label">{{ field.label }}</p>
+                <p class="form-field">{{ field(**kwargs)|safe }}</p>
+              {% if field.errors %}
+                {% for error in field.errors %}
+                  <span class="error">{{ error }}</span>
+                {% endfor %}
+              {% endif %}
+              </div>
+            {% endmacro %}
+            {{ render_field(filter_form.days) }}
+            {{ render_field(filter_form.times) }}
+            {{ render_field(filter_form.tags) }}
+          </form>
         </div>
       </div>
       <div class="club-database">

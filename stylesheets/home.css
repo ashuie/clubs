@@ -109,7 +109,10 @@ div.club {
   padding: 20px;
   height: auto;
   width: auto;
-  background-color: #C8C9C7;
+  background-color:#dfe0de;
+  border-style: solid;
+  border-width: 20px;
+  border-color: #C8C9C7;
 }
 
 .club-name {
@@ -119,10 +122,47 @@ div.club {
   font-weight: bold;
 }
 
+.club-name:hover {
+  color: #174782;
+}
 .no-search-results {
   grid-column: span 2;
   flex-grow: 1;
   text-align: center;
   font-size: 30px;
   padding-top: 20px;
+}
+
+.filter ul {
+  list-style-type: none;
+  font-size: 16px;
+  margin-left: -40px;
+  margin-bottom: 3px;
+}
+
+.form-label {
+  margin-top: 5px;
+}
+
+ul#days, ul#times, ul#tags {
+  margin-top: 0px;
+}
+
+p {
+  margin-top: 0px;
+  height: 0px;
+}
+
+.filter-submit {
+  float: right;
+  background-color: #dfe0de;
+  color: #0C2340;
+  font-family: 'Oswald';
+  padding: 2px 10px;
+  font-size: 18px;
+  border: none;
+  cursor: pointer;
+  width: auto;
+  margin-right: 50px;
+  margin-top: -55px;
 }
